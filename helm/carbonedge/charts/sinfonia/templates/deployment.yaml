@@ -63,7 +63,7 @@ spec:
             {{- end }}
             {{- if and .Values.carbonedgeTier2CarbonIntensityQueryMode }}
             - name: CARBONEDGE_CARBON_INTENSITY_QUERY_MODE
-              value: {{ .Values.sinfonitaTier2PrometheusUrl }}
+              value: {{ .Values.carbonedgeTier2CarbonIntensityQueryMode }}
             {{- end }}
             {{- if and .Values.carbonedgeTier2ElectricityMapsAuthToken }}
             - name: CARBONEDGE_REALTIME_ELECTRICITY_MAPS_AUTH_TOKEN
