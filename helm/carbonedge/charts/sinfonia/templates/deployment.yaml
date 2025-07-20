@@ -55,7 +55,7 @@ spec:
             - name: SINFONIA_PROMETHEUS
               value: {{ .Values.sinfonitaTier2PrometheusUrl }}
             {{- end }}
-            {{- if and .Values.carbonedgeTier2Latitude and .Values.carbonedgeTier2Longitude }}
+            {{- if and .Values.carbonedgeTier2Latitude .Values.carbonedgeTier2Longitude }}
             - name: CARBONEDGE_LATITUDE
               value: {{ .Values.carbonedgeTier2Latitude }}
             - name: CARBONEDGE_LONGITUDE
