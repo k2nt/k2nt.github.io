@@ -18,7 +18,7 @@ replicaCount: 1
 sinfoniaTier1Url: ""
 sinfoniaTier2Url: ""
 sinfoniaTier2Recipes: ""
-sinfonitaTier2prometheusUrl: ""
+sinfonitaTier2PrometheusUrl: ""
 
 carbonedgeTier2Latitude: ""
 carbonedgeTier2Longitude: ""
