@@ -20,8 +20,8 @@ sinfoniaTier2Url: ""
 sinfoniaTier2Recipes: ""
 sinfonitaTier2PrometheusUrl: ""
 
-carbonedgeTier2Latitude: ""
-carbonedgeTier2Longitude: ""
+carbonedgeTier2Latitude: 0.0
+carbonedgeTier2Longitude: 0.0
 carbonedgeTier2CarbonIntensityQueryMode: ""
 carbonedgeTier2ElectricityMapsAuthToken: ""
 
