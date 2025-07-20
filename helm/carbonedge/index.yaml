@@ -3,12 +3,12 @@ entries:
   sinfonia:
   - apiVersion: v2
     appVersion: v0.4.10
-    created: "2025-07-20T10:26:16.716597551Z"
+    created: "2025-07-20T12:44:54.891574945Z"
     description: A Helm chart for deploying Sinfonia Tier1 or Tier2 in Kubernetes
-    digest: ac6b780240dd82d258e8edd8332cd0cc749786c5eafced54b0c1628f4cd4dc44
+    digest: 71f33b4df1f34d3356e1aea60a3d4af03eafcc681a1eaeac0c6d033a11f0b556
     name: sinfonia
     type: application
     urls:
     - sinfonia-0.4.10.tgz
     version: 0.4.10
-generated: "2025-07-20T10:26:16.715685072Z"
+generated: "2025-07-20T12:44:54.889746212Z"

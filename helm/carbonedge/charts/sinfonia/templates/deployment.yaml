@@ -67,11 +67,12 @@ spec:
             {{- end }}
             {{- if and .Values.carbonedgeTier2ElectricityMapsAuthToken }}
             - name: CARBONEDGE_REALTIME_ELECTRICITY_MAPS_AUTH_TOKEN
-              value: {{ .Values.sinfonitaTier2PrometheusUrl }}
+              value: {{ .Values.carbonedgeTier2ElectricityMapsAuthToken }}
             {{- end }}
           ports:
             - name: http
               containerPort: 5000
+              hostPort: 5001
               protocol: TCP
           livenessProbe:
             tcpSocket:
