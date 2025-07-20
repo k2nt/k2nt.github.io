@@ -57,9 +57,9 @@ spec:
             {{- end }}
             {{- if and .Values.carbonedgeTier2Latitude .Values.carbonedgeTier2Longitude }}
             - name: CARBONEDGE_LATITUDE
-              value: {{ .Values.carbonedgeTier2Latitude }}
+              value: {{ .Values.carbonedgeTier2Latitude | quote }}
             - name: CARBONEDGE_LONGITUDE
-              value: {{ .Values.carbonedgeTier2Longitude }}
+              value: {{ .Values.carbonedgeTier2Longitude | quote }}
             {{- end }}
             {{- if and .Values.carbonedgeTier2CarbonIntensityQueryMode }}
             - name: CARBONEDGE_CARBON_INTENSITY_QUERY_MODE
