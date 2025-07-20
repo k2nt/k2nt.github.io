@@ -15,6 +15,15 @@
 
 
 replicaCount: 1
+sinfoniaTier1Url: ""
+sinfoniaTier2Url: ""
+sinfoniaTier2Recipes: ""
+sinfonitaTier2prometheusUrl: ""
+
+carbonedgeTier2Latitude: ""
+carbonedgeTier2Longitude: ""
+carbonedgeTier2CarbonIntensityQueryMode: ""
+carbonedgeTier2ElectricityMapsAuthToken: ""
 
 image:
   repository: "k2nt/carbonedge"

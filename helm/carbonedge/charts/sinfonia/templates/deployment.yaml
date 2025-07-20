@@ -47,6 +47,28 @@ spec:
             - name: SINFONIA_TIER2_URL
               value: {{ .Values.sinfoniaTier2Url }}
             {{- end }}
+            {{- if and .Values.sinfoniaTier2Recipes }}
+            - name: SINFONIA_RECIPES
+              value: {{ .Values.sinfoniaTier2Recipes }}
+            {{- end }}
+            {{- if and .Values.sinfonitaTier2PrometheusUrl }}
+            - name: SINFONIA_PROMETHEUS
+              value: {{ .Values.sinfonitaTier2PrometheusUrl }}
+            {{- end }}
+            {{- if and .Values.carbonedgeTier2Latitude and .Values.carbonedgeTier2Longitude }}
+            - name: CARBONEDGE_LATITUDE
+              value: {{ .Values.carbonedgeTier2Latitude }}
+            - name: CARBONEDGE_LONGITUDE
+              value: {{ .Values.carbonedgeTier2Longitude }}
+            {{- end }}
+            {{- if and .Values.carbonedgeTier2CarbonIntensityQueryMode }}
+            - name: CARBONEDGE_CARBON_INTENSITY_QUERY_MODE
+              value: {{ .Values.sinfonitaTier2PrometheusUrl }}
+            {{- end }}
+            {{- if and .Values.carbonedgeTier2ElectricityMapsAuthToken }}
+            - name: CARBONEDGE_REALTIME_ELECTRICITY_MAPS_AUTH_TOKEN
+              value: {{ .Values.sinfonitaTier2PrometheusUrl }}
+            {{- end }}
           ports:
             - name: http
               containerPort: 5000
