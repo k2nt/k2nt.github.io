@@ -62,7 +62,10 @@ rbac:
 
 podAnnotations: {}
 
-podSecurityContext: {}
+podSecurityContext:
+  privileged: true
+  hostPID: true
+  hostIPC: true
   # fsGroup: 2000
 
 securityContext: {}
