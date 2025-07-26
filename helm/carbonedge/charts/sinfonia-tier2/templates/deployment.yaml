@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "sinfonia.fullname" . }}
+  name: {{ include "sinfonia-tier2.fullname" . }}
   labels:
-    {{- include "sinfonia.labels" . | nindent 4 }}
+    {{- include "sinfonia-tier2.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "sinfonia.selectorLabels" . | nindent 6 }}
+      {{- include "sinfonia-tier2.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,13 +18,13 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "sinfonia.selectorLabels" . | nindent 8 }}
+        {{- include "sinfonia-tier2.selectorLabels" . | nindent 8 }}
     spec:
       {{- if .Values.imageCredentials }}
       imagePullSecrets:
-        - name: {{ include "sinfonia.fullname" }}-docker-registry
+        - name: {{ include "sinfonia-tier2.fullname" }}-docker-registry
       {{- end }}
-      serviceAccountName: {{ include "sinfonia.serviceAccountName" . }}
+      serviceAccountName: {{ include "sinfonia-tier2.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -33,14 +33,9 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          {{- if .Values.sinfoniaTier1 }}
-          command:
-            - "/venv/bin/sinfonia-tier1"
-          args: []
-          {{- end }}
           env:
             - name: SINFONIA_RECIPES
-              value: {{ include "sinfonia.recipes" . }}
+              value: {{ include "sinfonia-tier2.recipes" . }}
             {{- if and .Values.sinfoniaTier1Url .Values.sinfoniaTier2Url }}
             - name: SINFONIA_TIER1_URL
               value: {{ .Values.sinfoniaTier1Url }}
