@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "sinfonia-tier2.fullname" . }}
+  name: {{ include "sinfonia-tier1.fullname" . }}
   labels:
-    {{- include "sinfonia-tier2.labels" . | nindent 4 }}
+    {{- include "sinfonia-tier1.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "sinfonia-tier2.selectorLabels" . | nindent 6 }}
+      {{- include "sinfonia-tier1.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,13 +18,13 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "sinfonia-tier2.selectorLabels" . | nindent 8 }}
+        {{- include "sinfonia-tier1.selectorLabels" . | nindent 8 }}
     spec:
       {{- if .Values.imageCredentials }}
       imagePullSecrets:
-        - name: {{ include "sinfonia-tier2.fullname" }}-docker-registry
+        - name: {{ include "sinfonia-tier1.fullname" }}-docker-registry
       {{- end }}
-      serviceAccountName: {{ include "sinfonia-tier2.serviceAccountName" . }}
+      serviceAccountName: {{ include "sinfonia-tier1.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -33,20 +33,17 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command:
+            - "/venv/bin/sinfonia-tier1"
+          args: []
           env:
-            {{- if and .Values.sinfoniaTier1Url .Values.sinfoniaTier2Url }}
-            - name: SINFONIA_TIER1_URL
-              value: {{ .Values.sinfoniaTier1Url }}
-            - name: SINFONIA_TIER2_URL
-              value: {{ .Values.sinfoniaTier2Url }}
-            {{- end }}
-            {{- if and .Values.sinfoniaTier2Recipes }}
+            {{- if and .Values.sinfoniaRecipes }}
             - name: SINFONIA_RECIPES
-              value: {{ .Values.sinfoniaTier2Recipes }}
+              value: {{ .Values.sinfoniaRecipes }}
             {{- end }}
-            {{- if and .Values.sinfonitaTier2PrometheusUrl }}
-            - name: SINFONIA_PROMETHEUS
-              value: {{ .Values.sinfonitaTier2PrometheusUrl }}
+            {{- if and .Values.sinfoniaTier1Matchers }}
+            - name: SINFONIA_MATCHERS
+              value: {{ .Values.sinfoniaTier1Matchers }}
             {{- end }}
             {{- if and .Values.carbonedgeTier2Latitude .Values.carbonedgeTier2Longitude }}
             - name: CARBONEDGE_LATITUDE

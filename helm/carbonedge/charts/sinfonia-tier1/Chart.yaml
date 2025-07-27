@@ -1,0 +1,6 @@
+apiVersion: v2
+appVersion: v0.4.10
+description: A Helm chart for deploying Sinfonia-Tier1 in Kubernetes
+name: sinfonia-tier1
+type: application
+version: 0.4.10
