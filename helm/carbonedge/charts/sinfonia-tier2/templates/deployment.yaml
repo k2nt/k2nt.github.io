@@ -40,9 +40,9 @@ spec:
             - name: SINFONIA_TIER2_URL
               value: {{ .Values.sinfoniaTier2Url }}
             {{- end }}
-            {{- if and .Values.sinfoniaTier2Recipes }}
+            {{- if and .Values.sinfoniaRecipes }}
             - name: SINFONIA_RECIPES
-              value: {{ .Values.sinfoniaTier2Recipes }}
+              value: {{ .Values.sinfoniaRecipes }}
             {{- end }}
             {{- if and .Values.sinfonitaTier2PrometheusUrl }}
             - name: SINFONIA_PROMETHEUS
