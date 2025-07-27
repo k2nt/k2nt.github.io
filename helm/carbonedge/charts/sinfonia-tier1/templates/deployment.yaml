@@ -45,19 +45,9 @@ spec:
             - name: SINFONIA_MATCHERS
               value: {{ .Values.sinfoniaTier1Matchers }}
             {{- end }}
-            {{- if and .Values.carbonedgeTier2Latitude .Values.carbonedgeTier2Longitude }}
-            - name: CARBONEDGE_LATITUDE
-              value: {{ .Values.carbonedgeTier2Latitude | quote }}
-            - name: CARBONEDGE_LONGITUDE
-              value: {{ .Values.carbonedgeTier2Longitude | quote }}
-            {{- end }}
-            {{- if and .Values.carbonedgeTier2CarbonIntensityQueryMode }}
-            - name: CARBONEDGE_CARBON_INTENSITY_QUERY_MODE
-              value: {{ .Values.carbonedgeTier2CarbonIntensityQueryMode }}
-            {{- end }}
-            {{- if and .Values.carbonedgeTier2ElectricityMapsAuthToken }}
-            - name: CARBONEDGE_REALTIME_ELECTRICITY_MAPS_AUTH_TOKEN
-              value: {{ .Values.carbonedgeTier2ElectricityMapsAuthToken }}
+            {{- if and .Values.sinfoniaTier1Cloudlets }}
+            - name: SINFONIA_CLOUDLETS
+              value: {{ .Values.sinfoniaTier1Cloudlets }}
             {{- end }}
           ports:
             - name: http
