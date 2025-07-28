@@ -65,7 +65,7 @@ spec:
           ports:
             - name: http
               containerPort: 5000
-              hostPort: 5001
+              hostPort: {{ .Values.ports.hostPort | default 5000 }}
               protocol: TCP
           livenessProbe:
             tcpSocket:

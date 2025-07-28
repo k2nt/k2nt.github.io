@@ -3,9 +3,9 @@ entries:
   carbonedge-tier1:
   - apiVersion: v2
     appVersion: v0.4.10
-    created: "2025-07-28T20:59:53.670007036Z"
+    created: "2025-07-28T21:17:48.408876351Z"
     description: A Helm chart for deploying CarbonEdge-Tier1 in Kubernetes
-    digest: d48e885749d0b556019f4228e290ba9661e20ca89f75d7252340e4474b86740c
+    digest: fd11424540e03e4538dc0eeefa2234182e3f34d5c7e8f644be8f36e922bc011d
     name: carbonedge-tier1
     type: application
     urls:
@@ -14,12 +14,12 @@ entries:
   carbonedge-tier2:
   - apiVersion: v2
     appVersion: v0.4.10
-    created: "2025-07-28T20:59:53.671173116Z"
+    created: "2025-07-28T21:17:48.409673959Z"
     description: A Helm chart for deploying CarbonEdge-Tier2 in Kubernetes
-    digest: 931c7ac140a4e8b21fd1ecdabc7c9628f589e4846330404ae88d0f0b9d4892e5
+    digest: 4783af1435bc4c55ac0b61c61e3f17816485d146fa7d6732f180e14a29517d5c
     name: carbonedge-tier2
     type: application
     urls:
     - carbonedge-tier2-0.4.10.tgz
     version: 0.4.10
-generated: "2025-07-28T20:59:53.668500072Z"
+generated: "2025-07-28T21:17:48.407919703Z"

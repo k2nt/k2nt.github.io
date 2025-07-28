@@ -68,6 +68,9 @@ service:
   targetPort: 5000
   nodePort: 30050
 
+ports:
+  hostPort: 5000
+
 ingress:
   enabled: true
   # className: "nginx"
