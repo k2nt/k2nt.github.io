@@ -1,25 +1,25 @@
 apiVersion: v1
 entries:
-  sinfonia-tier1:
+  carbonedge-tier1:
   - apiVersion: v2
     appVersion: v0.4.10
-    created: "2025-07-27T18:34:42.229592827Z"
-    description: A Helm chart for deploying Sinfonia-Tier1 in Kubernetes
-    digest: 031622c9007329291b20be140b37bb9ee2be1d96b1ce66b8e566e362eadd564a
-    name: sinfonia-tier1
+    created: "2025-07-28T20:15:03.206600796Z"
+    description: A Helm chart for deploying CarbonEdge-Tier1 in Kubernetes
+    digest: 611ae37a1c00c65433ae429b56c7b0b4be8c0e8ccb94e18665f4c7440f74c235
+    name: carbonedge-tier1
     type: application
     urls:
-    - sinfonia-tier1-0.4.10.tgz
+    - carbonedge-tier1-0.4.10.tgz
     version: 0.4.10
-  sinfonia-tier2:
+  carbonedge-tier2:
   - apiVersion: v2
     appVersion: v0.4.10
-    created: "2025-07-27T18:34:42.230713289Z"
-    description: A Helm chart for deploying Sinfonia-Tier2 in Kubernetes
-    digest: 7fb4049462e994e9ee9ad8bff56c1b020f55bcd7d268266e76ab48ba36b1d995
-    name: sinfonia-tier2
+    created: "2025-07-28T20:15:03.20742147Z"
+    description: A Helm chart for deploying CarbonEdge-Tier2 in Kubernetes
+    digest: 1472540cad13067b137e4f0d9cdf92fb55b83cecda707422781db08e7865c6b8
+    name: carbonedge-tier2
     type: application
     urls:
-    - sinfonia-tier2-0.4.10.tgz
+    - carbonedge-tier2-0.4.10.tgz
     version: 0.4.10
-generated: "2025-07-27T18:34:42.228095331Z"
+generated: "2025-07-28T20:15:03.205652428Z"

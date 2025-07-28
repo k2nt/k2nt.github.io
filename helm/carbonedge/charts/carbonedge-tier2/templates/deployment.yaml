@@ -1,0 +1,91 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "carbonedge-tier2.fullname" . }}
+  labels:
+    {{- include "carbonedge-tier2.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "carbonedge-tier2.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "carbonedge-tier2.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- if .Values.imageCredentials }}
+      imagePullSecrets:
+        - name: {{ include "carbonedge-tier2.fullname" }}-docker-registry
+      {{- end }}
+      serviceAccountName: {{ include "carbonedge-tier2.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            {{- if and .Values.sinfoniaTier1Url .Values.sinfoniaTier2Url }}
+            - name: SINFONIA_TIER1_URL
+              value: {{ .Values.sinfoniaTier1Url }}
+            - name: SINFONIA_TIER2_URL
+              value: {{ .Values.sinfoniaTier2Url }}
+            {{- end }}
+            {{- if and .Values.sinfoniaRecipes }}
+            - name: SINFONIA_RECIPES
+              value: {{ .Values.sinfoniaRecipes }}
+            {{- end }}
+            {{- if and .Values.sinfonitaTier2PrometheusUrl }}
+            - name: SINFONIA_PROMETHEUS
+              value: {{ .Values.sinfonitaTier2PrometheusUrl }}
+            {{- end }}
+            {{- if and .Values.carbonedgeTier2Latitude .Values.carbonedgeTier2Longitude }}
+            - name: CARBONEDGE_LATITUDE
+              value: {{ .Values.carbonedgeTier2Latitude | quote }}
+            - name: CARBONEDGE_LONGITUDE
+              value: {{ .Values.carbonedgeTier2Longitude | quote }}
+            {{- end }}
+            {{- if and .Values.carbonedgeTier2CarbonIntensityQueryMode }}
+            - name: CARBONEDGE_CARBON_INTENSITY_QUERY_MODE
+              value: {{ .Values.carbonedgeTier2CarbonIntensityQueryMode }}
+            {{- end }}
+            {{- if and .Values.carbonedgeTier2ElectricityMapsAuthToken }}
+            - name: CARBONEDGE_REALTIME_ELECTRICITY_MAPS_AUTH_TOKEN
+              value: {{ .Values.carbonedgeTier2ElectricityMapsAuthToken }}
+            {{- end }}
+          ports:
+            - name: http
+              containerPort: 5000
+              hostPort: 5001
+              protocol: TCP
+          livenessProbe:
+            tcpSocket:
+              port: http
+            initialDelaySeconds: 10
+          readinessProbe:
+            tcpSocket:
+              port: http
+            initialDelaySeconds: 5
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

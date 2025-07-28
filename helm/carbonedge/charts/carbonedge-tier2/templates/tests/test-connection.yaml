@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: '{{ include "carbonedge-tier2.fullname" . }}-test-connection'
+  labels:
+    {{- include "carbonedge-tier2.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args: ['{{ include "carbonedge-tier2.fullname" . }}:{{ .Values.service.port }}']
+  restartPolicy: Never
