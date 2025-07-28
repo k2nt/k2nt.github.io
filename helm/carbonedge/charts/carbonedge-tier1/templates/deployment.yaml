@@ -34,7 +34,7 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command:
-            - "/venv/bin/carbonedge-tier1"
+            - "/venv/bin/sinfonia-tier1"
           args: []
           env:
             {{- if and .Values.sinfoniaRecipes }}
