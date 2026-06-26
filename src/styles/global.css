@@ -4,14 +4,10 @@
    Edit these custom properties to re-skin the whole site.
 ---------------------------------------------------------------------------- */
 :root {
-  /* Fonts — a quiet homage to Microsoft type:
-     Aptos Serif (companion to Aptos) for headings,
-     Aptos (Microsoft's current default sans) for body,
-     Cascadia Code (Microsoft's dev font) for code.
-     These ship with Microsoft 365 / Windows; graceful fallbacks follow. */
-  --font-serif: "Aptos Serif", "Cambria", Georgia, "Times New Roman", serif;
-  --font-sans: "Aptos", "Segoe UI", "Selawik", system-ui, -apple-system,
-    BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+  /* Fonts */
+  --font-serif: "Merriweather", Georgia, "Times New Roman", serif;
+  --font-sans: "Source Sans 3 Variable", system-ui, -apple-system,
+    BlinkMacSystemFont, Helvetica, Arial, sans-serif;
   --font-mono: "Cascadia Code", "Cascadia Mono", ui-monospace, SFMono-Regular,
     "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
 

@@ -1,20 +1,18 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { SITE, ABOUT, SOCIAL } from "../config";
+import { SITE, ABOUT } from "../config";
 
 const tabs = [
   { label: "Blog", href: "/blog" },
   { label: "TIL", href: "/til" },
+  { label: "Photos", href: "/photos" },
 ];
-
-const links = SOCIAL.filter((item) => item.href.length > 0);
 ---
 
 <BaseLayout full>
   <div class="landing">
     <section class="landing__intro">
-      <h1 class="landing__name">{SITE.title}</h1>
-      <p class="landing__tagline">{SITE.tagline}</p>
+      <h1 class="landing__name">{SITE.author}</h1>
       {ABOUT.map((paragraph) => <p class="landing__about">{paragraph}</p>)}
     </section>
 
@@ -28,55 +26,30 @@ const links = SOCIAL.filter((item) => item.href.length > 0);
           ))
         }
       </ul>
-
-      {
-        links.length > 0 && (
-          <ul class="landing__links">
-            {links.map((link) => {
-              const isMailto = link.href.startsWith("mailto:");
-              return (
-                <li>
-                  <a
-                    href={link.href}
-                    rel="me noopener"
-                    target={isMailto ? undefined : "_blank"}
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
-        )
-      }
     </nav>
   </div>
 </BaseLayout>
 
 <style>
   .landing {
-    min-height: 100vh;
+    flex: 1 0 auto;
+    width: 100%;
     max-width: var(--wide-width);
     margin-inline: auto;
     padding: var(--space-6) var(--space-4);
     display: grid;
-    grid-template-columns: 1.5fr 1fr;
+    grid-template-columns: 1.618fr 1fr;
     gap: var(--space-6);
     align-items: center;
   }
 
   .landing__name {
     font-size: var(--text-3xl);
-    margin-bottom: var(--space-2);
-  }
-
-  .landing__tagline {
-    font-size: var(--text-lg);
-    color: var(--color-text-muted);
-    margin: 0 0 var(--space-4);
+    margin-bottom: var(--space-5);
   }
 
   .landing__about {
+    font-size: var(--text-lg);
     margin: 0 0 var(--space-3);
   }
 
@@ -84,14 +57,13 @@ const links = SOCIAL.filter((item) => item.href.length > 0);
     margin-bottom: 0;
   }
 
-  /* The vertical split: a divider between intro and tabs. */
+  /* The vertical split: no divider between intro and tabs. */
   .landing__nav {
-    border-left: 1px solid var(--color-border);
+    border-left: none;
     padding-left: var(--space-5);
-    align-self: stretch;
+    align-self: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     gap: var(--space-5);
   }
 
@@ -106,31 +78,12 @@ const links = SOCIAL.filter((item) => item.href.length > 0);
 
   .landing__tabs a {
     font-family: var(--font-serif);
-    font-size: var(--text-2xl);
-    color: var(--color-text);
+    font-size: var(--text-lg);
+    color: var(--color-text-muted);
     letter-spacing: -0.01em;
   }
 
   .landing__tabs a:hover {
-    color: var(--color-accent);
-    text-decoration: none;
-  }
-
-  .landing__links {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-    font-size: var(--text-sm);
-  }
-
-  .landing__links a {
-    color: var(--color-text-muted);
-  }
-
-  .landing__links a:hover {
     color: var(--color-accent);
     text-decoration: none;
   }
@@ -140,7 +93,6 @@ const links = SOCIAL.filter((item) => item.href.length > 0);
       grid-template-columns: 1fr;
       gap: var(--space-5);
       align-items: start;
-      min-height: 0;
       padding-block: var(--space-5);
     }
 

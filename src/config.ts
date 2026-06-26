@@ -19,12 +19,14 @@ export const NAV: { label: string; href: string }[] = [
 // Links shown in the footer / bottom bar.
 // Leave `href` empty ("") to hide a row until you're ready to add it.
 export const SOCIAL: { label: string; href: string }[] = [
-  { label: "GitHub", href: "https://github.com/k2nt" },
   { label: "Email", href: "mailto:khai.tnguyen@outlook.com" },
+  { label: "GitHub", href: "https://github.com/k2nt" },
+  { label: "Codeforces", href: "https://codeforces.com/profile/k2nt" },
 ];
 
 // Short intro shown on the home page. Each string is a paragraph.
 export const ABOUT: string[] = [
-  "Hi, I'm Khai — a software engineer who likes building simple, durable things and writing about what I learn along the way.",
-  "This site is my corner of the internet: longer-form posts in the blog, quick notes in TIL, and the occasional experiment.",
+  "I am a software engineer by trade. I like computers, math, and tinkering with things.",
+  "I am an avid reader. When I am not reading technical papers, I tend toward history and philosophy. I am an Arsenal fan, have two dogs I love dearly, and like to run. I am currently working on learning French, picking up skateboarding, and running a full marathon.",
+  "I write here to think out loud and keep a record of things worth remembering.",
 ];

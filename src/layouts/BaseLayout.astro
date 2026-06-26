@@ -1,7 +1,13 @@
 ---
+import "@fontsource/merriweather";
+import "@fontsource/merriweather/700.css";
+import "@fontsource/merriweather/400-italic.css";
+import "@fontsource/merriweather/700-italic.css";
+import "@fontsource-variable/source-sans-3";
 import "../styles/global.css";
 
 import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
 
 interface Props {
   title?: string;
@@ -9,7 +15,7 @@ interface Props {
   image?: string;
   /** Use the wider container for listing/landing pages. */
   wide?: boolean;
-  /** Render the slot full-bleed (no main/container) for custom layouts. */
+  /** Render the slot full-bleed (no main/container/footer) for custom layouts. */
   full?: boolean;
 }
 
@@ -24,13 +30,19 @@ const { title, description, image, wide = false, full = false } = Astro.props;
   <body>
     {
       full ? (
-        <slot />
+        <>
+          <slot />
+          <Footer />
+        </>
       ) : (
-        <main>
-          <div class:list={["container", { "container--wide": wide }]}>
-            <slot />
-          </div>
-        </main>
+        <>
+          <main>
+            <div class:list={["container", { "container--wide": wide }]}>
+              <slot />
+            </div>
+          </main>
+          <Footer />
+        </>
       )
     }
   </body>
