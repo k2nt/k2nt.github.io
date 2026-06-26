@@ -1,0 +1,70 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PostCard from "../../components/PostCard.astro";
+
+const published = (entry: { data: { draft: boolean } }) =>
+  import.meta.env.PROD ? !entry.data.draft : true;
+
+const posts = (await getCollection("til", published)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<BaseLayout title="TIL" description="Today I Learned — short notes.">
+  <a href="/" class="home-link">← Khai Nguyen</a>
+  <header class="page-head">
+    <h1>Today I Learned</h1>
+    <p>Short, bite-sized notes on things I picked up.</p>
+  </header>
+
+  {
+    posts.length > 0 ? (
+      <div class="post-list">
+        {posts.map((post) => (
+          <PostCard
+            href={`/til/${post.id}`}
+            title={post.data.title}
+            description={post.data.description}
+            pubDate={post.data.pubDate}
+            tags={post.data.tags}
+          />
+        ))}
+      </div>
+    ) : (
+      <p class="empty">Nothing here yet — check back soon.</p>
+    )
+  }
+</BaseLayout>
+
+<style>
+  .home-link {
+    display: inline-block;
+    font-family: var(--font-serif);
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-5);
+  }
+
+  .home-link:hover {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .page-head {
+    margin-bottom: var(--space-4);
+  }
+
+  .page-head h1 {
+    margin-bottom: var(--space-2);
+  }
+
+  .page-head p {
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .empty {
+    color: var(--color-text-muted);
+  }
+</style>

@@ -1,0 +1,116 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import FormattedDate from "../components/FormattedDate.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  tags?: string[];
+  backHref: string;
+  backLabel: string;
+}
+
+const {
+  title,
+  description,
+  pubDate,
+  updatedDate,
+  tags = [],
+  backHref,
+  backLabel,
+} = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <article class="post">
+    <a href={backHref} class="post__back">← {backLabel}</a>
+    <header class="post__header">
+      <h1>{title}</h1>
+      <p class="post__meta">
+        <FormattedDate date={pubDate} />
+        {
+          updatedDate && (
+            <span>
+              {" · updated "}
+              <FormattedDate date={updatedDate} />
+            </span>
+          )
+        }
+      </p>
+      {
+        tags.length > 0 && (
+          <ul class="post__tags">
+            {tags.map((tag) => (
+              <li>#{tag}</li>
+            ))}
+          </ul>
+        )
+      }
+    </header>
+    <div class="post__body">
+      <slot />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .post__back {
+    display: inline-block;
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-4);
+  }
+
+  .post__back:hover {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .post__header {
+    margin-bottom: var(--space-5);
+  }
+
+  .post__header h1 {
+    margin-bottom: var(--space-2);
+  }
+
+  .post__meta {
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+    margin: 0;
+  }
+
+  .post__tags {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin: var(--space-3) 0 0;
+    padding: 0;
+    font-size: var(--text-xs);
+    color: var(--color-accent);
+  }
+
+  .post__body :global(h2) {
+    margin-top: var(--space-5);
+  }
+
+  .post__body :global(h3) {
+    margin-top: var(--space-4);
+  }
+
+  .post__body :global(img) {
+    border-radius: var(--radius);
+  }
+
+  .post__body :global(ul),
+  .post__body :global(ol) {
+    padding-left: var(--space-4);
+  }
+
+  .post__body :global(li) {
+    margin-bottom: var(--space-1);
+  }
+</style>
