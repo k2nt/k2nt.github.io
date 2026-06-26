@@ -26,7 +26,7 @@ export const SOCIAL: { label: string; href: string }[] = [
 
 // Short intro shown on the home page. Each string is a paragraph.
 export const ABOUT: string[] = [
-  "I am a software engineer by trade. I like computers, math, and tinkering with things.",
+  "I am a software engineer by trade. I like computers, math, and building stuff.",
   "I am an avid reader. When I am not reading technical papers, I tend toward history and philosophy. I am an Arsenal fan, have two dogs I love dearly, and like to run. I am currently working on learning French, picking up skateboarding, and running a full marathon.",
   "I write here to think out loud and keep a record of things worth remembering.",
 ];
