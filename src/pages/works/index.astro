@@ -6,10 +6,51 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
   <a href="/" class="home-link">← Khai Nguyen</a>
   <header class="page-head">
     <h1>Works</h1>
-    <p>Projects and things I have built.</p>
+    <p>Curated list of my work.</p>
   </header>
 
-  <p class="empty">Nothing here yet — check back soon.</p>
+  <section class="section">
+    <h2 class="section-title">Experience</h2>
+    <ul class="entry-list">
+      <li class="entry">
+        <span class="entry__date">Aug 2025 – Present</span>
+        <div class="entry__body">
+          <p class="entry__role">Software Engineer</p>
+          <p class="entry__org">Microsoft Corporation</p>
+        </div>
+      </li>
+      <li class="entry">
+        <span class="entry__date">Sep 2023 – Jul 2025</span>
+        <div class="entry__body">
+          <p class="entry__role">Graduate Research Assistant</p>
+          <p class="entry__org">University of Massachusetts Amherst</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">Research</h2>
+    <ul class="paper-list">
+      <li class="paper">
+        <span class="paper__year">2025</span>
+        <div class="paper__body">
+          <a
+            class="paper__title"
+            href="https://arxiv.org/abs/2502.14076"
+            target="_blank"
+            rel="noopener"
+          >
+            CarbonEdge: Leveraging Mesoscale Spatial Carbon-Intensity Variations for Low Carbon Edge Computing
+          </a>
+          <p class="paper__authors">
+            Li Wu, Walid A. Hanafy, Abel Souza, <strong>Khai Nguyen</strong>, Jan Harkes, David Irwin, Mahadev Satyanarayanan, Prashant Shenoy
+          </p>
+          <p class="paper__meta">arXiv &middot; February 2025</p>
+        </div>
+      </li>
+    </ul>
+  </section>
 </BaseLayout>
 
 <style>
@@ -27,7 +68,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
   }
 
   .page-head {
-    margin-bottom: var(--space-4);
+    margin-bottom: var(--space-6);
   }
 
   .page-head h1 {
@@ -38,8 +79,101 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     color: var(--color-text-muted);
   }
 
-  .empty {
+  .section {
+    margin-bottom: var(--space-6);
+  }
+
+  .section-title {
+    font-size: var(--text-xl);
+    font-family: var(--font-serif);
+    margin-bottom: var(--space-5);
+  }
+
+  .entry-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .entry {
+    display: grid;
+    grid-template-columns: 9rem 1fr;
+    gap: var(--space-5);
+  }
+
+  .entry__date {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    padding-top: 0.35em;
+  }
+
+  .entry__role {
+    font-family: var(--font-serif);
+    font-size: var(--text-lg);
+    line-height: 1.4;
+    margin: 0 0 var(--space-1);
+  }
+
+  .entry__org {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .paper-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .paper {
+    display: grid;
+    grid-template-columns: 9rem 1fr;
+    gap: var(--space-5);
+  }
+
+  .paper__year {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    padding-top: 0.35em;
+  }
+
+  .paper__title {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: var(--text-lg);
+    line-height: 1.4;
+    margin-bottom: var(--space-2);
+  }
+
+  .paper__title:hover {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .paper__authors {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin: 0 0 var(--space-1);
+    line-height: 1.5;
+  }
+
+  .paper__meta {
+    font-size: var(--text-sm);
     color: var(--color-text-muted);
     font-style: italic;
+    margin: 0 0 var(--space-3);
+  }
+
+  .paper__contribution {
+    font-size: var(--text-sm);
+    color: var(--color-text);
+    margin: 0;
   }
 </style>

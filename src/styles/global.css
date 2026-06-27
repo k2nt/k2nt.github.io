@@ -15,7 +15,7 @@
   --color-bg: #fbf9f6; /* warm off-white */
   --color-surface: #ffffff;
   --color-surface-alt: #f3eee9; /* pastel sand */
-  --color-text: #2b2722; /* warm off-black */
+  --color-text: #3a342c; /* warm off-black */
   --color-text-muted: #6f675d; /* warm muted */
   --color-border: #eae3dc;
 
@@ -102,11 +102,6 @@
 
 /* Override the OS accent for text selection so highlights match the theme
    (otherwise a purple/blue system accent shows as "purple on white"). */
-::selection {
-  background: var(--color-accent-soft);
-  color: var(--color-text);
-}
-
 html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
